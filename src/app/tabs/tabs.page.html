@@ -1,5 +1,4 @@
 <ion-tabs #tabs (ionTabsDidChange)="getSelectedTab()">
-
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
       <ng-container *ngIf="selectedTab === 'home'; else elseTemplateHome">
@@ -20,7 +19,9 @@
     </ion-tab-button>
 
     <ion-tab-button tab="new-tournament">
-      <ng-container *ngIf="selectedTab === 'new-tournament'; else elseTemplateNewTournaments">
+      <ng-container
+        *ngIf="selectedTab === 'new-tournament'; else elseTemplateNewTournaments"
+      >
         <ion-icon size="large" name="add-circle"></ion-icon>
       </ng-container>
       <ng-template #elseTemplateNewTournaments>
@@ -46,5 +47,4 @@
       </ng-template>
     </ion-tab-button>
   </ion-tab-bar>
-
 </ion-tabs>
