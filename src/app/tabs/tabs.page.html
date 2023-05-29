@@ -1,0 +1,50 @@
+<ion-tabs #tabs (ionTabsDidChange)="getSelectedTab()">
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ng-container *ngIf="selectedTab === 'home'; else elseTemplateHome">
+        <ion-icon size="large" name="home"></ion-icon>
+      </ng-container>
+      <ng-template #elseTemplateHome>
+        <ion-icon size="large" name="home-outline"></ion-icon>
+      </ng-template>
+    </ion-tab-button>
+
+    <ion-tab-button tab="games">
+      <ng-container *ngIf="selectedTab === 'games'; else elseTemplateGames">
+        <ion-icon size="large" name="game-controller"></ion-icon>
+      </ng-container>
+      <ng-template #elseTemplateGames>
+        <ion-icon size="large" name="game-controller-outline"></ion-icon>
+      </ng-template>
+    </ion-tab-button>
+
+    <ion-tab-button tab="new-tournament">
+      <ng-container *ngIf="selectedTab === 'new-tournament'; else elseTemplateNewTournaments">
+        <ion-icon size="large" name="add-circle"></ion-icon>
+      </ng-container>
+      <ng-template #elseTemplateNewTournaments>
+        <ion-icon size="large" name="add-circle-outline"></ion-icon>
+      </ng-template>
+    </ion-tab-button>
+
+    <ion-tab-button tab="ranking">
+      <ng-container *ngIf="selectedTab === 'ranking'; else elseTemplateRanking">
+        <ion-icon size="large" name="trophy"></ion-icon>
+      </ng-container>
+      <ng-template #elseTemplateRanking>
+        <ion-icon size="large" name="trophy-outline"></ion-icon>
+      </ng-template>
+    </ion-tab-button>
+
+    <ion-tab-button tab="players">
+      <ng-container *ngIf="selectedTab === 'players'; else elseTemplateProfile">
+        <ion-icon size="large" name="people"></ion-icon>
+      </ng-container>
+      <ng-template #elseTemplateProfile>
+        <ion-icon size="large" name="people-outline"></ion-icon>
+      </ng-template>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

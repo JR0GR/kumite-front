@@ -1,0 +1,19 @@
+ion-title {
+  font-family: Logo !important;
+  font-size: 36px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--ion-color-primary);
+  margin-left: 60px;
+  margin-top: 20px;
+}
+
+ion-avatar {
+  margin-right: 25px;
+  max-width: 36px;
+  max-height: 36px;
+  margin-top: 20px;
+}
+
+.header-md::after {
+  display: none;
+}
