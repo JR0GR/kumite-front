@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">KUMITE.GG</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wrapper ion-align-items-center">
+    <ion-grid>
+      <form id="loginForm" (ngSubmit)="login()" [formGroup]="credentials">
+        <ion-row>
+          <ion-col>
+            <app-input
+              label="Email"
+              type="email"
+              formControlName="email"
+              [clearInput]="true"
+            ></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <app-input
+              label="Password"
+              type="password"
+              formControlName="password"
+              [clearInput]="true"
+            ></app-input>
+          </ion-col>
+        </ion-row>
+      </form>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="10"
+          ><ion-button
+            form="loginForm"
+            type="submit"
+            shape="round"
+            expand="block"
+            >Log In</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -1,0 +1,10 @@
+<ion-label class="input-label">{{ label }}</ion-label>
+<ion-item>
+  <ion-input
+    [type]="type"
+    [clearInput]="clearInput"
+    class="custom"
+    (ngModelChange)="onInputChange($event)"
+    [(ngModel)]="valor"
+  ></ion-input>
+</ion-item>

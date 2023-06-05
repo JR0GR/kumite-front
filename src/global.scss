@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -26,6 +26,31 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @font-face {
-  font-family: 'Logo';
-  src: url('assets/fonts/CostaRica.otf');
+  font-family: "Logo";
+  src: url("assets/fonts/CostaRica.otf");
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+}
+
+ion-item:not(.item-form) {
+  --border-width: 0 !important;
+  --inner-border-width: 0 !important;
+  --border-style: none !important;
+}
+
+ion-button {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.input-label {
+  display: block;
+  font-weight: bold;
+  font-size: 24px;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: inset 0px -2px 0px -1px var(--ion-color-primary);
 }

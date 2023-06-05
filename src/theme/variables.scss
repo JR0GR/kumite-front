@@ -1,16 +1,25 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@font-face {
+  font-family: inter;
+  src: url("../assets/fonts/Inter.ttf"); //change url accordingly
+}
+
 /** Ionic CSS Variables **/
 :root {
-  --ion-background-color: #101010;
-	--ion-background-color-rgb: 16,16,16;
+  --ion-font-family: "inter";
 
-	--ion-text-color: #E0E0E0;
-	--ion-text-color-rgb: 224,224,224;
+  --ion-background-color: #101010;
+  --ion-background-color-rgb: 16, 16, 16;
+
+  --ion-background-input: #1c1c1c;
+
+  --ion-text-color: #e0e0e0;
+  --ion-text-color-rgb: 224, 224, 224;
 
   /** primary **/
-  --ion-color-primary: #BD2727;
+  --ion-color-primary: #bd2727;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;

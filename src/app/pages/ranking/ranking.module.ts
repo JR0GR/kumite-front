@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PlayersPageRoutingModule } from './players-routing.module';
+import { RankingPageRoutingModule } from './ranking-routing.module';
 
-import { PlayersPage } from './players.page';
-import { HeaderModule } from "../components/header/header.module";
+import { RankingPage } from './ranking.page';
+import { HeaderModule } from "../../components/header/header.module";
 
 @NgModule({
-  declarations: [PlayersPage],
+  declarations: [RankingPage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlayersPageRoutingModule,
+    RankingPageRoutingModule,
     HeaderModule
   ]
 })
-export class PlayersPageModule { }
+export class RankingPageModule { }

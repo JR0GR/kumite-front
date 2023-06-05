@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { GamesPageRoutingModule } from './games-routing.module';
 
 import { GamesPage } from './games.page';
-import { HeaderModule } from '../components/header/header.module';
+import { HeaderModule } from '../../components/header/header.module';
 
 @NgModule({
   imports: [

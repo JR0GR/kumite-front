@@ -1,0 +1,23 @@
+ion-title {
+  font-family: Logo !important;
+  font-size: 52px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--ion-color-primary);
+  margin-top: 104px;
+}
+
+.header-md::after {
+  display: none;
+}
+
+ion-grid {
+  margin-top: -150px;
+}
+
+ion-row {
+  margin-bottom: 40px;
+}
+
+ion-button {
+  max-width: 288px;
+}
