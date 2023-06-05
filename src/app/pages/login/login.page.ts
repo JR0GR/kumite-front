@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/auth/auth.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -12,22 +14,33 @@ export class LoginPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
+    private authService: AuthenticationService,
   ) { }
 
   ngOnInit() {
     this.credentials = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     })
 
   }
 
   login() {
-    console.log('login')
-    if (!this.credentials.valid) return
-    console.log('is valid, redirecting')
-    this.router.navigateByUrl('', { replaceUrl: true });
+    if (!this.credentials.valid) {
+      this.toastService.presentToast('Email and/or password incorrect', false);
+      return;
+    }
+    console.log(this.credentials.value.email + " | " + this.credentials.value.password)
+    this.authService.login(this.credentials.value).subscribe(
+      res => {
+        this.authService.saveToken(res);
+        console.log(res);
+        this.router.navigateByUrl('', { replaceUrl: true });
+      }
+    );
   }
+
 
 }

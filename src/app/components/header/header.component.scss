@@ -17,3 +17,8 @@ ion-avatar {
 .header-md::after {
   display: none;
 }
+
+ion-header {
+  width: 100vw;
+  margin-bottom: 30px;
+}

@@ -54,3 +54,29 @@ ion-button {
   margin-right: 20px;
   box-shadow: inset 0px -2px 0px -1px var(--ion-color-primary);
 }
+
+.toast-error {
+  --color: #cf5151;
+  --border-color: #343a40;
+  --border-radius: 25px;
+  --border-style: solid;
+  --border-width: 3px;
+  --background: #343a40;
+  --button-color: #cf5151;
+  font-size: 16px;
+}
+
+.toast-success {
+  --color: #5398ea;
+  --border-color: #343a40;
+  --border-radius: 25px;
+  --border-style: solid;
+  --border-width: 3px;
+  --background: #343a40;
+  --button-color: #5398ea;
+  font-size: 16px;
+}
+
+.ion-page {
+  align-items: center;
+}

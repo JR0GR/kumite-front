@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,19 +10,23 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'games',
-        loadChildren: () => import('../games/games.module').then(m => m.GamesPageModule)
+        loadChildren: () => import('../games/games.module').then(m => m.GamesPageModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'ranking',
-        loadChildren: () => import('../ranking/ranking.module').then(m => m.RankingPageModule)
+        loadChildren: () => import('../ranking/ranking.module').then(m => m.RankingPageModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'players',
-        loadChildren: () => import('../players/players.module').then(m => m.PlayersPageModule)
+        loadChildren: () => import('../players/players.module').then(m => m.PlayersPageModule),
+        canActivate: [AuthGuard],
       },
       {
         path: '',
@@ -40,4 +45,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
