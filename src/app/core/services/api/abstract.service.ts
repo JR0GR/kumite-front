@@ -15,7 +15,7 @@ export abstract class AbstractService<T> {
         protected http: HttpClient,
     ) { }
 
-    get<R = T>(
+    get<R = T[]>(
         url: string = this.url,
         options?: RequestOptions,
         id?: number

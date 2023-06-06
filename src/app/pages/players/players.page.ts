@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/api/users/users.service';
 
 @Component({
@@ -7,11 +8,16 @@ import { UsersService } from 'src/app/core/services/api/users/users.service';
   styleUrls: ['./players.page.scss'],
 })
 export class PlayersPage implements OnInit {
+  users: User[];
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.usersService.get().subscribe(res => console.log(res))
+
+  }
+
+  ionViewWillEnter() {
+    this.usersService.get().subscribe(res => { this.users = res })
   }
 
 }

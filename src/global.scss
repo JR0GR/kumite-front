@@ -25,6 +25,8 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+
 @font-face {
   font-family: "Logo";
   src: url("assets/fonts/CostaRica.otf");
@@ -33,12 +35,6 @@
 .wrapper {
   height: 100%;
   display: flex;
-}
-
-ion-item:not(.item-form) {
-  --border-width: 0 !important;
-  --inner-border-width: 0 !important;
-  --border-style: none !important;
 }
 
 ion-button {

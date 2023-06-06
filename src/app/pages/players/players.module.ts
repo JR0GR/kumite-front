@@ -8,6 +8,7 @@ import { PlayersPageRoutingModule } from './players-routing.module';
 
 import { PlayersPage } from './players.page';
 import { HeaderModule } from "../../components/header/header.module";
+import { PlayerListModule } from 'src/app/components/player-list/player-list.module';
 
 @NgModule({
   declarations: [PlayersPage],
@@ -16,7 +17,8 @@ import { HeaderModule } from "../../components/header/header.module";
     FormsModule,
     IonicModule,
     PlayersPageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    PlayerListModule
   ]
 })
 export class PlayersPageModule { }

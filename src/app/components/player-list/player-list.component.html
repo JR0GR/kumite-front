@@ -1,0 +1,15 @@
+<ion-list>
+  <ng-container *ngFor="let user of users">
+    <ion-item lines="none">
+      <ion-avatar>
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>{{ user.nickname }}</ion-label>
+      <span [class]="'fi fi-' + user.nationality.toLowerCase()"></span>
+      <p class="ion-text-end">
+        W: {{ user.wins }}<br />T: {{ user.tournaments.length }}
+      </p>
+    </ion-item>
+    <hr class="line" />
+  </ng-container>
+</ion-list>
