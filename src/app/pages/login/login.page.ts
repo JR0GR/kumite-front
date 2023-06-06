@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/core/services/auth/auth.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private toastService: ToastService,
-    private authService: AuthenticationService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {

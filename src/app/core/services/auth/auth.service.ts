@@ -4,16 +4,12 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { StorageService } from '../storage/storage.service';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
-
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
-  usuario = null;
+export class AuthService {
+  user = null;
   token = null;
-  tokenRefresh = null;
   constructor(
     private http: HttpClient,
     private storageService: StorageService
@@ -30,7 +26,7 @@ export class AuthenticationService {
       ),
       responseType: 'text' as 'text'
     };
-    return this.http.post(`${environment.urlApi}/token`, {}, httpOptions);
+    return this.http.post(`${environment.urlApi}${environment.tokenEndpoint}`, {}, httpOptions);
   }
 
   register(data): Observable<any> {
@@ -38,9 +34,8 @@ export class AuthenticationService {
   }
 
   signOut(): void {
-    this.usuario = null;
+    this.user = null;
     this.token = null;
-    this.tokenRefresh = null;
     this.storageService.clear();
     window.location.reload();
   }

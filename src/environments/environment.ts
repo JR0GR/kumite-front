@@ -7,7 +7,10 @@ export const environment = {
 
   tokenKey: 'auth-token',
   userKey: 'auth-user',
-  urlApi: 'http://localhost:8080'
+  urlApi: 'http://localhost:8080',
+
+  tokenEndpoint: "/token",
+  userEndpoint: "/users/"
 
 };
 

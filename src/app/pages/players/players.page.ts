@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/core/services/api/users/users.service';
 
 @Component({
   selector: 'app-players',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayersPage implements OnInit {
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.usersService.get().subscribe(res => console.log(res))
   }
 
 }
