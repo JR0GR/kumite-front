@@ -1,3 +1,29 @@
 <app-header> </app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="5.75"
+        ><ion-button
+          [class]="sort === false ? '' : 'filter-disable'"
+          (click)="changeActiveSort(false)"
+          expand="block"
+          shape="round"
+        >
+          Rank By Wins
+        </ion-button></ion-col
+      >
+      <ion-col size="5.75"
+        ><ion-button
+          [class]="sort ? '' : 'filter-disable'"
+          (click)="changeActiveSort(true)"
+          expand="block"
+          shape="round"
+        >
+          Rank By Tournaments
+        </ion-button></ion-col
+      >
+    </ion-row>
+  </ion-grid>
+  <app-player-list [users]="sorteredUsers"></app-player-list>
+</ion-content>

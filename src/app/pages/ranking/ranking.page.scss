@@ -1,0 +1,20 @@
+ion-button {
+  margin: 0;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: pre-wrap;
+}
+
+.filter-disable {
+  --background: var(--ion-background-input);
+}
+
+ion-grid {
+  margin: 0 20px 30px 20px;
+  padding: 0;
+}
+
+ion-col {
+  padding: 0;
+}

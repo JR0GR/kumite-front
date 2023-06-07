@@ -10,6 +10,11 @@ ion-title {
   display: none;
 }
 
+ion-header {
+  width: 100vw;
+  margin-bottom: 30px;
+}
+
 ion-grid {
   margin-top: -150px;
 }

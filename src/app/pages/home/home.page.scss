@@ -2,6 +2,10 @@ div {
   margin-bottom: 40px;
 }
 
+div:last-child {
+  margin-bottom: 30px;
+}
+
 ion-content {
   max-width: 912px;
 }
