@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title slot="start">KUMITE.GG</ion-title>
+    <ion-buttons slot="start" *ngIf="backButton">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [class]="backButton ? 'if-back-button' : ''"
+      >KUMITE.GG</ion-title
+    >
     <ion-avatar slot="end">
       <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>

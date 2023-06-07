@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/core/services/api/users/users.service';
 })
 export class PlayersPage implements OnInit {
   users: User[];
+  filteredUsers: User[];
 
   constructor(private usersService: UsersService) { }
 
@@ -17,7 +18,15 @@ export class PlayersPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.usersService.get().subscribe(res => { this.users = res })
+    this.usersService.get().subscribe(res => {
+      this.users = res;
+      this.filteredUsers = this.users;
+    })
   }
+
+  filterUsers(value: string) {
+    this.filteredUsers = value ? this.users.filter(user => user.nickname.startsWith(value)) : this.users;
+  }
+
 
 }

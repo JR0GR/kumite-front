@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { ProfilePageRoutingModule } from './profile-routing.module';
 
-import { HomePage } from './home.page';
-import { HeaderModule } from '../../components/header/header.module';
+import { ProfilePage } from './profile.page';
+import { HeaderModule } from 'src/app/components/header/header.module';
 import { GameTournamentListModule } from 'src/app/components/game-tournament-list/game-tournament-list.module';
 
 @NgModule({
@@ -15,10 +15,10 @@ import { GameTournamentListModule } from 'src/app/components/game-tournament-lis
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    ProfilePageRoutingModule,
     HeaderModule,
     GameTournamentListModule
   ],
-  declarations: [HomePage]
+  declarations: [ProfilePage]
 })
-export class HomePageModule { }
+export class ProfilePageModule { }

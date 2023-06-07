@@ -1,0 +1,17 @@
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  margin-left: 20px;
+  margin-top: 20px;
+  gap: 24px;
+}
+
+.carousel::-webkit-scrollbar {
+  background: transparent;
+  display: none;
+  width: 0;
+}
+
+img:last-child {
+  margin-right: 20px;
+}

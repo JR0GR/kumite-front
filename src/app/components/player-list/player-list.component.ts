@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user.model';
 
 @Component({
@@ -9,8 +10,14 @@ import { User } from 'src/app/core/models/user.model';
 export class PlayerListComponent implements OnInit {
   @Input() users: User[]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() { }
 
+  goToProfile(user: User) {
+    this.router.navigate(['/profile'], {
+      state: { user }
+    });
+
+  }
 }

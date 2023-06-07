@@ -32,6 +32,19 @@
   src: url("assets/fonts/CostaRica.otf");
 }
 
+ion-content {
+  max-width: 912px;
+}
+
+ion-content {
+  --offset-bottom: auto !important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .wrapper {
   height: 100%;
   display: flex;
@@ -42,13 +55,17 @@ ion-button {
   font-size: 18px;
 }
 
-.input-label {
+.custom-label {
   display: block;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
+  box-shadow: inset 0px -2px 0px -1px var(--ion-color-primary);
+}
+
+.input-label {
   margin-left: 20px;
   margin-right: 20px;
-  box-shadow: inset 0px -2px 0px -1px var(--ion-color-primary);
+  font-size: 24px;
 }
 
 .toast-error {
@@ -75,4 +92,20 @@ ion-button {
 
 .ion-page {
   align-items: center;
+}
+
+ion-searchbar {
+  .searchbar-input-container {
+    input {
+      padding-inline-start: 50px !important;
+      padding-inline-end: 40px !important;
+    }
+  }
+}
+
+.fi {
+  height: 28px;
+  width: 28px;
+  margin-right: 10px;
+  margin-left: 10px;
 }

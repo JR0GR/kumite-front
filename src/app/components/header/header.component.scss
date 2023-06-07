@@ -7,6 +7,10 @@ ion-title {
   margin-top: 20px;
 }
 
+.if-back-button {
+  margin-left: 10px;
+}
+
 ion-avatar {
   margin-right: 25px;
   max-width: 36px;
@@ -22,4 +26,8 @@ ion-avatar {
 ion-header {
   width: 100vw;
   margin-bottom: 30px;
+}
+
+ion-back-button {
+  --padding-top: 20px;
 }

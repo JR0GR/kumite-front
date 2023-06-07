@@ -1,4 +1,5 @@
 <app-header> </app-header>
 <ion-content>
-  <app-player-list [users]="users"></app-player-list>
+  <app-searchbar (searchValue)="filterUsers($event)"></app-searchbar>
+  <app-player-list [users]="filteredUsers"></app-player-list>
 </ion-content>

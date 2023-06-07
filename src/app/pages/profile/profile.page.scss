@@ -1,0 +1,63 @@
+ion-header {
+  --border-style: none;
+}
+
+ion-header::after {
+  content: none;
+}
+
+ion-avatar {
+  min-width: 150px;
+  min-height: 150px;
+  border: 1px solid var(--ion-color-primary);
+  margin-left: 20px;
+}
+
+ion-grid {
+  padding: 0;
+}
+
+ion-col {
+  padding: 0;
+}
+
+.custom-label {
+  margin-right: 20px;
+}
+
+.nickname-row {
+  margin-top: 20px;
+}
+
+.stats-row {
+  margin-top: 10px;
+}
+
+.nationality-row {
+  margin-top: 30px;
+
+  ion-col {
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    margin-left: 20px;
+  }
+}
+
+.platforms-row {
+  margin-left: 20px;
+}
+
+.platforms-cell {
+  margin-top: 20px;
+}
+
+span {
+  margin-left: 10px;
+}
+
+ion-grid > ion-row {
+  margin-bottom: 30px;
+}

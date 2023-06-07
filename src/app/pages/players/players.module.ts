@@ -9,6 +9,7 @@ import { PlayersPageRoutingModule } from './players-routing.module';
 import { PlayersPage } from './players.page';
 import { HeaderModule } from "../../components/header/header.module";
 import { PlayerListModule } from 'src/app/components/player-list/player-list.module';
+import { SearchbarModule } from 'src/app/components/searchbar/searchbar.module';
 
 @NgModule({
   declarations: [PlayersPage],
@@ -18,7 +19,8 @@ import { PlayerListModule } from 'src/app/components/player-list/player-list.mod
     IonicModule,
     PlayersPageRoutingModule,
     HeaderModule,
-    PlayerListModule
+    PlayerListModule,
+    SearchbarModule
   ]
 })
 export class PlayersPageModule { }
