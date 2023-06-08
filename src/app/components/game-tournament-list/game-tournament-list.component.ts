@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class GameTournamentListComponent implements OnInit {
   @Input() label: string;
+  @Input() type: 'games' | 'tournaments'
 
   constructor(private router: Router) { }
 
@@ -15,6 +16,7 @@ export class GameTournamentListComponent implements OnInit {
 
   goToDetail() {
     console.log('test')
-    this.router.navigate(['/game-detail'])
+    if (this.type == 'games') this.router.navigate(['/game-detail'])
+    else this.router.navigate(['/tournament-detail'])
   }
 }

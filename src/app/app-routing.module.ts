@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'new-tournament',
     loadChildren: () => import('./pages/new-tournament/new-tournament.module').then(m => m.NewTournamentPageModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'tournament-detail',
+    loadChildren: () => import('./pages/tournament-detail/tournament-detail.module').then( m => m.TournamentDetailPageModule)
   }
 ];
 @NgModule({

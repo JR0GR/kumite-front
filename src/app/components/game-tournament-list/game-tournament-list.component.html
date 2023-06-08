@@ -1,5 +1,5 @@
 <ion-label class="custom-label input-label">{{ label }}</ion-label>
-<div class="carousel">
+<div *ngIf="type === 'games'" class="carousel">
   <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
   <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
   <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
@@ -10,4 +10,16 @@
   <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
   <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
   <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
+</div>
+<div *ngIf="type === 'tournaments'" class="carousel">
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
 </div>
