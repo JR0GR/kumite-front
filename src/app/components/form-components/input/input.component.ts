@@ -20,7 +20,7 @@ export class InputComponent<T> extends AbstractFormComponent<string> implements 
   @Input() id = `${InputComponent.name}-${++InputComponent._id}`;
   @Input() type: string;
   @Input() clearInput: boolean;
-  @Input() label: string;
+  @Input() label?: string;
   @Input() valor: string = '';
 
   ngOnInit() { }

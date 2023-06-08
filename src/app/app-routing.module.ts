@@ -16,6 +16,16 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'game-detail',
+    loadChildren: () => import('./pages/game-detail/game-detail.module').then(m => m.GameDetailPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new-tournament',
+    loadChildren: () => import('./pages/new-tournament/new-tournament.module').then(m => m.NewTournamentPageModule),
+    canActivate: [AuthGuard],
   }
 ];
 @NgModule({

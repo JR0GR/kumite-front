@@ -1,9 +1,11 @@
-<ion-label class="custom-label input-label">{{ label }}</ion-label>
+<ion-label *ngIf="label" class="custom-label input-label">{{
+  label
+}}</ion-label>
 <ion-item lines="none">
   <ion-input
     [type]="type"
     [clearInput]="clearInput"
-    class="custom"
+    [class]="'custom' + (type === 'number' ? ' ion-text-center' : '')"
     (ngModelChange)="onInputChange($event)"
     [(ngModel)]="valor"
   ></ion-input>

@@ -1,0 +1,65 @@
+<ion-header>
+  <app-header [backButton]="true"></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form
+      id="tournamentForm"
+      (ngSubmit)="createTournament()"
+      [formGroup]="tournament"
+      s
+    >
+      <ion-row>
+        <ion-col
+          ><app-game-tournament-list label="Games"></app-game-tournament-list
+        ></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input
+            type="text"
+            [clearInput]="true"
+            label="Name"
+            formControlName="tournamentName"
+          ></app-input
+        ></ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-end">
+        <ion-col size="9"
+          ><ion-label class="custom-label input-label"
+            >Nº of Participants</ion-label
+          ></ion-col
+        >
+        <ion-col
+          ><app-input
+            type="number"
+            [clearInput]="false"
+            formControlName="tournamentParticipants"
+          ></app-input
+        ></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col
+          ><ion-button class="upload" (click)="image()" expand="block">
+            <div>
+              <ion-icon src="../../../assets/icon/upload.svg"></ion-icon
+              ><br />Upload an Image
+            </div>
+          </ion-button></ion-col
+        >
+      </ion-row>
+    </form>
+    <ion-row class="ion-justify-content-center submit-row">
+      <ion-col size="8" size-md="5">
+        <ion-button
+          form="tournamentForm"
+          type="submit"
+          shape="round"
+          expand="block"
+          >Submit</ion-button
+        ></ion-col
+      >
+    </ion-row>
+  </ion-grid>
+</ion-content>

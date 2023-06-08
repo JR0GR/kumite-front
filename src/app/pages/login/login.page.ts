@@ -24,7 +24,6 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     })
-
   }
 
   login() {

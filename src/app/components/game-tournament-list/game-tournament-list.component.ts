@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-tournament-list',
@@ -8,8 +9,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GameTournamentListComponent implements OnInit {
   @Input() label: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() { }
 
+  goToDetail() {
+    console.log('test')
+    this.router.navigate(['/game-detail'])
+  }
 }
