@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Game } from 'src/app/core/models/apiModels/game.model';
 
 @Component({
   selector: 'app-game-detail',
@@ -14,7 +16,9 @@ export class GameDetailPage implements OnInit {
     platforms: ['PS5', 'XBOX', 'PC', 'Switch']
   }
 
-  constructor() { }
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
   }

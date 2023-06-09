@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/core/services/api/users/users.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 
@@ -17,6 +18,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private toastService: ToastService,
     private authService: AuthService,
+    private usersService: UsersService
   ) { }
 
   ngOnInit() {
@@ -31,11 +33,10 @@ export class LoginPage implements OnInit {
       this.toastService.presentToast('Email and/or password incorrect', false);
       return;
     }
-    console.log(this.credentials.value.email + " | " + this.credentials.value.password)
     this.authService.login(this.credentials.value).subscribe(
       res => {
         this.authService.saveToken(res);
-        console.log(res);
+        this.usersService.saveMe();
         this.router.navigateByUrl('', { replaceUrl: true });
       }
     );

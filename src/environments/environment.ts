@@ -10,7 +10,9 @@ export const environment = {
   urlApi: 'http://localhost:8080',
 
   tokenEndpoint: "/token",
-  userEndpoint: "/users/"
+  userEndpoint: "/users/",
+  gameEndpoint: "/games/",
+  tournamentEndpoint: "/tournaments/"
 
 };
 

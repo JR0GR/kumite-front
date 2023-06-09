@@ -16,11 +16,13 @@ export abstract class AbstractService<T> {
     ) { }
 
     get<R = T[]>(
-        url: string = this.url,
-        options?: RequestOptions,
-        id?: number
+        options?: RequestOptions
     ): Observable<R> {
-        return id ? this.http.get<R>(`${url}${id}`, options) : this.http.get<R>(`${url}`, options);
+        return this.http.get<R>(`${this.url}`, options);
+    }
+
+    getById(id: number): Observable<T> {
+        return this.http.get<T>(`${this.url}${id}/`);
     }
 
     post(body: T): Observable<T> {

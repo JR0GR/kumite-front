@@ -33,7 +33,6 @@ export class RequestInterceptor implements HttpInterceptor {
         return from(this.authService.getToken()).pipe(switchMap(token => {
             if (request.url.includes(environment.tokenEndpoint)) return next.handle(request)
 
-            console.log(token);
             request = request.clone({
                 setHeaders: {
                     authorization: `Bearer ` + token,
@@ -42,8 +41,6 @@ export class RequestInterceptor implements HttpInterceptor {
 
             return next.handle(request).pipe(
                 catchError((error) => {
-                    console.log(error);
-                    console.log(request);
 
                     return throwError(this.handleError(error));
                 })
@@ -52,7 +49,6 @@ export class RequestInterceptor implements HttpInterceptor {
     }
 
     private handleError(error: HttpErrorResponse) {
-        console.log('An error as ocurred');
         if (error.status === 400) {
             this.toastService.presentToast('File is too big or there is a cookie error', false);
         } else if (error.status === 401) {
@@ -69,7 +65,6 @@ export class RequestInterceptor implements HttpInterceptor {
             this.toastService.presentToast('Failed to connect to the server', false);
         }
 
-        console.log(error);
         return throwError(error);
     }
 

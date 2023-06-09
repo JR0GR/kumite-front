@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/core/models/user.model';
+import { User } from 'src/app/core/models/apiModels/user.model';
 
 @Component({
   selector: 'app-player-list',

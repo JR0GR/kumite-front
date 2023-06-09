@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/core/models/user.model';
+import { Game } from 'src/app/core/models/apiModels/game.model';
+import { Tournament } from 'src/app/core/models/apiModels/tournament.model';
+import { User } from 'src/app/core/models/apiModels/user.model';
+import { GamesService } from 'src/app/core/services/api/games/games.service';
+import { TournamentsService } from 'src/app/core/services/api/tournaments/tournaments.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,10 +13,14 @@ import { User } from 'src/app/core/models/user.model';
 })
 export class ProfilePage implements OnInit {
   user: User;
+  favorites: Game[] = [];
+  tournaments: Tournament[] = [];
   regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 
   constructor(
     private router: Router,
+    private gamesService: GamesService,
+    private tournamentsService: TournamentsService,
   ) {
     this.user = this.router.getCurrentNavigation()?.extras?.state?.user;
   }
@@ -23,6 +31,12 @@ export class ProfilePage implements OnInit {
       return;
     }
     console.log(this.user);
+    this.user.favourites.forEach((id) => {
+      this.gamesService.getById(id).subscribe(res => this.favorites.push(res));
+    })
+    this.user.tournaments.forEach((id) => {
+      this.tournamentsService.getById(id).subscribe(res => this.tournaments.push(res));
+    })
   }
 
 }
