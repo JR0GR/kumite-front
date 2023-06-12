@@ -1,3 +1,12 @@
 <app-header></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <app-searchbar (searchValue)="filterGames($event)"></app-searchbar>
+  <div class="flex-container">
+    <img
+      *ngFor="let game of filteredGames"
+      [src]="game.base64"
+      (click)="goToDetail(game)"
+    />
+  </div>
+</ion-content>

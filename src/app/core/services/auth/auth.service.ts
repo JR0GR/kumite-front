@@ -47,6 +47,7 @@ export class AuthService {
   }
 
   async getToken(): Promise<string | null> {
-    return await this.storageService.getObject(environment.tokenKey);
+    let token = await this.storageService.getObject(environment.tokenKey)
+    return token;
   }
 }

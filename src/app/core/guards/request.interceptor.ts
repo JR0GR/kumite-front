@@ -31,7 +31,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
 
         return from(this.authService.getToken()).pipe(switchMap(token => {
-            if (request.url.includes(environment.tokenEndpoint)) return next.handle(request)
+            if (request.url.includes(environment.tokenEndpoint) || request.url.includes(environment.imagesEndpoint) || request.url.includes('create')) return next.handle(request)
 
             request = request.clone({
                 setHeaders: {

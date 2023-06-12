@@ -4,6 +4,7 @@ import { User } from 'src/app/core/models/apiModels/user.model';
 import { environment } from 'src/environments/environment';
 import { StorageService } from '../../storage/storage.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,10 @@ export class UsersService extends AbstractService<User> {
 
   constructor(
     private storageService: StorageService,
-    http: HttpClient
+    http: HttpClient,
+    authService: AuthService
   ) {
-    super(http);
+    super(http, authService);
   }
 
   saveMe() {

@@ -114,3 +114,16 @@ ion-searchbar {
   margin-right: 10px;
   margin-left: 10px;
 }
+
+.action-sheet-title.sc-ion-action-sheet-ios {
+  color: #adb5bd !important;
+}
+// Para el botón de cancelar
+.action-sheet-cancel.sc-ion-action-sheet-ios::after {
+  background: #495057 !important;
+}
+
+.action-sheet-options {
+  --background: #495057;
+  --button-color: #5398ea;
+}

@@ -5,18 +5,21 @@
     <app-game-tournament-list
       label="Favorite Games"
       type="games"
+      [data]="favorites"
     ></app-game-tournament-list>
   </div>
   <div>
     <app-game-tournament-list
       label="Participating In..."
       type="tournaments"
+      [data]="userTournaments"
     ></app-game-tournament-list>
   </div>
   <div>
     <app-game-tournament-list
       label="Other Tournaments"
       type="tournaments"
+      [data]="tournaments"
     ></app-game-tournament-list>
   </div>
 </ion-content>

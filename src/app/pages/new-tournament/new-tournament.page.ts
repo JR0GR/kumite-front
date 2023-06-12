@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 import { Game } from 'src/app/core/models/apiModels/game.model';
+import { User } from 'src/app/core/models/apiModels/user.model';
 import { GamesService } from 'src/app/core/services/api/games/games.service';
+import { TournamentsService } from 'src/app/core/services/api/tournaments/tournaments.service';
+import { UsersService } from 'src/app/core/services/api/users/users.service';
+import { ImagesService } from 'src/app/core/services/images/images.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 
 @Component({
@@ -11,36 +16,127 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
   styleUrls: ['./new-tournament.page.scss'],
 })
 export class NewTournamentPage implements OnInit {
+  me: User;
   tournament: FormGroup;
   games: Game[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private toastService: ToastService,
     private gamesService: GamesService,
+    private imagesService: ImagesService,
+    private actionSheetController: ActionSheetController,
+    private tournamentsService: TournamentsService,
+    private usersService: UsersService,
+    private router: Router
   ) { }
 
   onViewWillEnter() {
-    this.gamesService.get().subscribe(res => this.games = res);
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.gamesService.get().subscribe(res => {
+      this.games = res
+      this.games.forEach(async game => {
+        game.base64 = await this.imagesService.getCacheImagen(game.imageId)
+      })
+    });
     this.tournament = this.fb.group({
+      game: ['', [Validators.required]],
       tournamentName: ['', [Validators.required]],
-      tournamentParticipants: ['', [Validators.required, Validators.min(4), Validators.max(32)]]
+      image: ['', [Validators.required]],
+    })
+    await this.usersService.getMe().then((res) => {
+      this.me = res;
     })
   }
 
   createTournament() {
     if (!this.tournament.valid) {
-      this.toastService.presentToast('All fields are required and participants must be between 4 and 32', false);
+      this.toastService.presentToast('All fields are required', false);
       return;
     }
+    console.log({
+      name: this.tournament.controls['tournamentName'].value,
+      platforms: ["PC", "XBOX", "PS5", "Switch"],
+      gameId: this.tournament.controls['game'].value,
+      creatorId: this.me.id,
+      imageId: this.tournament.controls['image'].value,
+    })
+    this.tournamentsService.post({
+      name: this.tournament.controls['tournamentName'].value,
+      platforms: ["PC", "XBOX", "PS5", "Switch"],
+      gameId: this.tournament.controls['game'].value,
+      creatorId: this.me.id,
+      imageId: this.tournament.controls['image'].value,
+    }).then(res => res.subscribe(res => {
+      this.toastService.presentToast('Tournament created', true);
+      this.router.navigateByUrl('/home', { replaceUrl: true })
+    }))
   }
 
   image() {
     console.log('test');
   }
+
+  gameSelected(value: number) {
+    console.log(value)
+    this.tournament.controls['game'].setValue(value);
+  }
+
+  async showOptionsCamera() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'You can upload only one image',
+      mode: 'ios',
+      cssClass: 'action-sheet-options',
+      buttons: [
+        {
+          text: 'Camera',
+          role: 'calculate',
+          handler: () => {
+            this.addPhotoToGallery(true);
+          },
+        },
+        {
+          text: 'Galery',
+          role: 'edit',
+          handler: () => {
+            this.addPhotoToGallery(false);
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+      ],
+    });
+    await actionSheet.present();
+  }
+
+  async addPhotoToGallery(camera: boolean) {
+    let photos = [];
+    if (camera === true) {
+      const imagen = await this.imagesService.pickFromCamera();
+      photos.push(imagen);
+    } else {
+      const imagenes = await this.imagesService.pickFromGallery(
+      );
+      if (imagenes !== null) {
+        photos = [...imagenes];
+      }
+    }
+
+    if (photos.length === 0) {
+      this.toastService.presentToast('You can upload a maximum of 1 image. Try again.', false);
+    }
+    else {
+      this.tournament.controls['image'].setValue(photos[0].title);
+
+    }
+
+  }
+
+
 
 }

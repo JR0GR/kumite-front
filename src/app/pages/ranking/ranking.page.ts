@@ -22,8 +22,6 @@ export class RankingPage implements OnInit {
   ionViewWillEnter() {
     this.usersService.get().subscribe(res => {
       this.users = res;
-      this.users[1].wins = 1
-      this.users[1].tournaments.pop()
       this.sorteredUsers = this.users;
     })
   }

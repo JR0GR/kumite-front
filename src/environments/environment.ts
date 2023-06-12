@@ -12,7 +12,8 @@ export const environment = {
   tokenEndpoint: "/token",
   userEndpoint: "/users/",
   gameEndpoint: "/games/",
-  tournamentEndpoint: "/tournaments/"
+  tournamentEndpoint: "/tournaments/",
+  imagesEndpoint: "/images/",
 
 };
 

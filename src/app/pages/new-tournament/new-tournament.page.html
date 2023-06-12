@@ -15,6 +15,9 @@
           ><app-game-tournament-list
             label="Games"
             type="games"
+            [data]="games"
+            [select]="true"
+            (selected)="gameSelected($event)"
           ></app-game-tournament-list
         ></ion-col>
       </ion-row>
@@ -28,26 +31,20 @@
           ></app-input
         ></ion-col>
       </ion-row>
-      <ion-row class="ion-align-items-end">
-        <ion-col size="9"
-          ><ion-label class="custom-label input-label"
-            >Nº of Participants</ion-label
-          ></ion-col
-        >
-        <ion-col
-          ><app-input
-            type="number"
-            [clearInput]="false"
-            formControlName="tournamentParticipants"
-          ></app-input
-        ></ion-col>
-      </ion-row>
       <ion-row>
         <ion-col
-          ><ion-button class="upload" (click)="image()" expand="block">
+          ><ion-button
+            class="upload"
+            (click)="showOptionsCamera()"
+            expand="block"
+          >
             <div>
-              <ion-icon src="../../../assets/icon/upload.svg"></ion-icon
-              ><br />Upload an Image
+              <ion-icon
+                *ngIf="this.tournament.controls['image'].value === ''"
+                src="../../../assets/icon/upload.svg"
+              ></ion-icon
+              ><br />{{this.tournament.controls['image'].value !== '' ? 'Image
+              uploaded' : 'Upload an Image' }}
             </div>
           </ion-button></ion-col
         >

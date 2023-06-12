@@ -8,6 +8,7 @@ import { GamesPageRoutingModule } from './games-routing.module';
 
 import { GamesPage } from './games.page';
 import { HeaderModule } from '../../components/header/header.module';
+import { SearchbarModule } from 'src/app/components/searchbar/searchbar.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { HeaderModule } from '../../components/header/header.module';
     FormsModule,
     IonicModule,
     GamesPageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    SearchbarModule
   ],
   declarations: [GamesPage]
 })

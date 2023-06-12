@@ -1,25 +1,22 @@
-<ion-label class="custom-label input-label">{{ label }}</ion-label>
-<div *ngIf="type === 'games'" class="carousel">
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage.png" alt="" />
-</div>
-<div *ngIf="type === 'tournaments'" class="carousel">
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
-  <img (click)="goToDetail()" src="../../../assets/testImage2.png" alt="" />
+<ion-label *ngIf="data?.length" class="custom-label input-label">{{
+  label
+}}</ion-label>
+<div class="carousel" *ngIf="data">
+  <ng-container *ngIf="!select">
+    <img
+      *ngFor="let elem of data"
+      [src]="elem.base64"
+      (click)="goToDetail(elem)"
+    />
+  </ng-container>
+  <ng-container *ngIf="select">
+    <img
+      *ngFor="let elem of data"
+      [src]="elem.base64"
+      (click)="valueSelected(elem)"
+      [class]="
+        gameSelected === elem.id || gameSelected === null ? '' : 'img-filter'
+      "
+    />
+  </ng-container>
 </div>

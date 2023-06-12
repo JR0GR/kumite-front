@@ -83,6 +83,7 @@
         <app-game-tournament-list
           label="Favorite Games"
           type="games"
+          [data]="favorites"
         ></app-game-tournament-list
       ></ion-col>
     </ion-row>
@@ -91,6 +92,7 @@
         <app-game-tournament-list
           label="Participating In..."
           type="tournaments"
+          [data]="tournaments"
         ></app-game-tournament-list
       ></ion-col>
     </ion-row>
