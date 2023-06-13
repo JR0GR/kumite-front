@@ -32,7 +32,6 @@ export class HomePage implements OnInit {
     await this.usersService.getMe().then((res) => {
       this.me = res;
     })
-    console.log(this.me)
     await this.getFavorites();
     await this.getTournaments();
   }
@@ -64,7 +63,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
 }

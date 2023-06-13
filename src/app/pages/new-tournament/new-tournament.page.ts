@@ -59,6 +59,7 @@ export class NewTournamentPage implements OnInit {
     } catch (e) {
 
     }
+    console.log(this.tournament.value)
     if (!this.tournament.valid) {
       this.toastService.presentToast('All fields are required', false);
       return;

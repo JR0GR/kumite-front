@@ -20,10 +20,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private imagesService: ImagesService
   ) {
-    this.usersService.getMe().then(async (res) => {
-      res.base64 = await this.imagesService.getCacheImagen(res.pictureId)
+    this.usersService.getMe().then((res) => {
       this.me = res;
-
     })
   }
 

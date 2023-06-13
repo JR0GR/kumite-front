@@ -3,8 +3,11 @@ import { AbstractService } from '../abstract.service';
 import { User } from 'src/app/core/models/apiModels/user.model';
 import { environment } from 'src/environments/environment';
 import { StorageService } from '../../storage/storage.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
+import { ImagesService } from '../../images/images.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,19 +19,24 @@ export class UsersService extends AbstractService<User> {
   constructor(
     private storageService: StorageService,
     http: HttpClient,
-    authService: AuthService
+    authService: AuthService,
+    private imagesService: ImagesService,
   ) {
     super(http, authService);
   }
 
-  saveMe() {
+  async saveMe() {
     this.storageService.removeItem('user')
-    this.http.get<User>(this.url + 'me/').subscribe((user) => {
+    this.http.get<User>(this.url + 'me/').subscribe(async (user) => {
+      user.base64 = await this.imagesService.getCacheImagen(user.pictureId)
+      console.log(user)
       this.storageService.setObject('user', user);
+      await this.authService.saveProfile(user.profileId)
     })
   }
 
   async getMe() {
     return await this.storageService.getObject('user');
   }
+
 }

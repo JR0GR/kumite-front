@@ -34,10 +34,9 @@ export class LoginPage implements OnInit {
       return;
     }
     this.authService.login(this.credentials.value).subscribe(
-      res => {
+      async res => {
         this.authService.saveToken(res);
-        this.usersService.saveMe();
-        this.router.navigateByUrl('', { replaceUrl: true });
+        await this.usersService.saveMe();
       }
     );
   }

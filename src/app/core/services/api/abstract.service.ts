@@ -11,7 +11,7 @@ export abstract class AbstractService<T> {
     abstract readonly url: string;
     constructor(
         protected http: HttpClient,
-        private authService: AuthService
+        protected authService: AuthService
     ) { }
 
     get<R = T[]>(

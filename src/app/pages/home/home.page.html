@@ -1,21 +1,21 @@
 <app-header></app-header>
 
 <ion-content>
-  <div>
+  <div *ngIf="favorites.length > 0">
     <app-game-tournament-list
       label="Favorite Games"
       type="games"
       [data]="favorites"
     ></app-game-tournament-list>
   </div>
-  <div>
+  <div *ngIf="userTournaments.length > 0">
     <app-game-tournament-list
       label="Participating In..."
       type="tournaments"
       [data]="userTournaments"
     ></app-game-tournament-list>
   </div>
-  <div>
+  <div *ngIf="tournaments.length > 0">
     <app-game-tournament-list
       label="Active Tournaments"
       type="tournaments"

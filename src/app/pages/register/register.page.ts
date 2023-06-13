@@ -5,6 +5,8 @@ import { ImagesService } from 'src/app/core/services/images/images.service';
 import { ActionSheetController } from '@ionic/angular';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { UsersService } from 'src/app/core/services/api/users/users.service';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +24,8 @@ export class RegisterPage implements OnInit {
     private actionSheetController: ActionSheetController,
     private toastService: ToastService,
     private router: Router,
+    private authService: AuthService,
+    private usersService: UsersService
   ) { }
 
   ngOnInit() {
@@ -38,17 +42,45 @@ export class RegisterPage implements OnInit {
   }
 
   async registerUser() {
+    console.log(this.photos[0])
     try {
       this.register.controls['pictureId'].setValue(await (await this.imagesService.uploadImage(this.photos[0])).title);
-    } catch (e) {
-
-    }
-
+    } catch (e) { }
     if (!this.register.valid) {
       this.toastService.presentToast(this.register.controls['password'].value !== this.register.controls['confirmPassword'].value ? 'All fields are required and passwords must be the sames' : 'All fields are required', false);
       return;
     }
-    console.log('test')
+    const profileData = {
+      name: this.register.controls['name'].value,
+      email: this.register.controls['email'].value,
+      password: this.register.controls['password'].value,
+      phone: this.register.controls['phone'].value,
+      admin: false,
+      moderator: false,
+      active: true,
+    }
+
+    let userData = {
+      nickname: this.register.controls['nickname'].value,
+      platforms: ["PC", "XBOX", "PS5", "Switch"],
+      nationality: this.register.controls['nationality'].value,
+      pictureId: this.register.controls['pictureId'].value,
+      profileId: null
+    }
+
+    this.authService.register(profileData).subscribe(res => {
+      userData.profileId = res.id
+      this.authService.login({
+        email: this.register.controls['name'].value,
+        password: this.register.controls['password'].value,
+      }).subscribe(async res => {
+        this.authService.saveToken(res);
+        this.usersService.post(userData).then(res => res.subscribe(res => {
+          this.toastService.presentToast('User registered', true);
+          this.router.navigateByUrl('/login', { replaceUrl: true });
+        }))
+      })
+    })
   }
 
   goToLogin() {

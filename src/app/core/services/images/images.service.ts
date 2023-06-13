@@ -1,5 +1,5 @@
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Camera,
@@ -26,7 +26,8 @@ export class ImagesService {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   private PHOTO_STORAGE = 'photos';
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService, handler: HttpBackend) {
+    this.http = new HttpClient(handler);
     Preferences.remove({ key: this.PHOTO_STORAGE });
   }
 
@@ -64,12 +65,13 @@ export class ImagesService {
     console.log(blob);
 
     const title = new Date().getTime() + '.png';
-    const data = { base64: base64File.replace('data:image/png;base64,', ''), title };
+    const data = { base64: base64File.split(',')[1], title };
 
     return data
   }
 
   async uploadImage(data) {
+    console.log(data)
     const image = await this.upload(data);
     console.log(image)
     return { title: image, base64File: 'data:image/png;base64,' + data.base64File };
@@ -89,7 +91,7 @@ export class ImagesService {
     }).catch(async (e) => {
       console.log('image not in cache')
       const image = await this.getImage(data);
-      await this.saveImageToCache({ title: data, base64File: image.replace('data:image/png;base64,', '') });
+      await this.saveImageToCache({ title: data, base64File: image });
       base64File = image;
 
     });
@@ -108,14 +110,8 @@ export class ImagesService {
   }
 
   async upload(data): Promise<any> {
-    let auth_token = await this.authService.getToken()
+
     const httpOptions = {
-      headers: new HttpHeaders(
-        {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth_token}`
-        }
-      ),
       responseType: 'text' as 'text'
     };
     console.log(data);
@@ -123,14 +119,7 @@ export class ImagesService {
   }
 
   async getImage(id: string): Promise<string> {
-    let auth_token = await this.authService.getToken()
     const httpOptions = {
-      headers: new HttpHeaders(
-        {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth_token}`
-        }
-      ),
       responseType: 'text' as 'text'
     };
 

@@ -1,8 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { StorageService } from '../storage/storage.service';
+import { Profile } from '../../models/apiModels/profile.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +14,12 @@ export class AuthService {
   token = null;
   constructor(
     private http: HttpClient,
-    private storageService: StorageService
-  ) { }
+    private storageService: StorageService,
+    handler: HttpBackend,
+    private router: Router
+  ) {
+    this.http = new HttpClient(handler);
+  }
 
   login(credentials): Observable<any> {
 
@@ -30,7 +36,14 @@ export class AuthService {
   }
 
   register(data): Observable<any> {
-    return this.http.post(`${environment.urlApi}/token`, data);
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+        }
+      )
+    };
+    return this.http.post<any>(`${environment.urlApi}${environment.profileEndpoint}create`, data, httpOptions);
   }
 
   signOut(): void {
@@ -49,5 +62,14 @@ export class AuthService {
   async getToken(): Promise<string | null> {
     let token = await this.storageService.getObject(environment.tokenKey)
     return token;
+  }
+
+  async saveProfile(id) {
+    this.storageService.removeItem('profile')
+    this.http.get<Profile>(`${environment.urlApi}${environment.profileEndpoint}${id}`).subscribe(profile => {
+      console.log(profile)
+      this.storageService.setObject('profile', profile);
+      this.router.navigateByUrl('', { replaceUrl: true });
+    })
   }
 }
