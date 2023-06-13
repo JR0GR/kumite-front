@@ -1,7 +1,8 @@
 {
   "name": "kumite",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

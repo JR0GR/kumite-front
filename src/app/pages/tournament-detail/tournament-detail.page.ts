@@ -20,8 +20,11 @@ export class TournamentDetailPage implements OnInit {
 
   ionViewWillEnter() {
     this.usersService.get().subscribe(res => {
-      res.forEach(user => {
-        if (this.tournament.participants.includes(user.id)) this.users.push(user)
+      res.forEach(async user => {
+        if (this.tournament.participants.includes(user.id)) {
+          user.base64 = await this.imagesService.getCacheImagen(user.pictureId);
+          this.users.push(user)
+        }
       })
     })
 
