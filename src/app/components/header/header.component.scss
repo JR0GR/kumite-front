@@ -31,3 +31,16 @@ ion-header {
 ion-back-button {
   --padding-top: 20px;
 }
+
+.login-title {
+  font-family: Logo !important;
+  font-size: 52px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--ion-color-primary);
+  margin-top: 52px;
+  margin-left: 0;
+}
+
+.login-header {
+  max-width: 421px;
+}

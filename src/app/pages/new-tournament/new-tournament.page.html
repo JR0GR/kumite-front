@@ -40,11 +40,11 @@
           >
             <div>
               <ion-icon
-                *ngIf="this.tournament.controls['image'].value === ''"
+                *ngIf="photos.length === 0"
                 src="../../../assets/icon/upload.svg"
               ></ion-icon
-              ><br />{{this.tournament.controls['image'].value !== '' ? 'Image
-              uploaded' : 'Upload an Image' }}
+              ><br />{{photos.length > 0 ? 'Image uploaded' : 'Upload an Image'
+              }}
             </div>
           </ion-button></ion-col
         >

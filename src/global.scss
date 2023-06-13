@@ -74,24 +74,24 @@ ion-button {
 }
 
 .toast-error {
-  --color: #cf5151;
-  --border-color: #343a40;
+  --color: var(--ion-color-primary);
+  --border-color: var(--ion-background-input);
   --border-radius: 25px;
   --border-style: solid;
   --border-width: 3px;
-  --background: #343a40;
-  --button-color: #cf5151;
+  --background: var(--ion-background-input);
+  --button-color: var(--ion-color-primary);
   font-size: 16px;
 }
 
 .toast-success {
-  --color: #5398ea;
-  --border-color: #343a40;
+  --color: var(--ion-color-success);
+  --border-color: var(--ion-background-input);
   --border-radius: 25px;
   --border-style: solid;
   --border-width: 3px;
-  --background: #343a40;
-  --button-color: #5398ea;
+  --background: var(--ion-background-input);
+  --button-color: var(--ion-color-success);
   font-size: 16px;
 }
 
@@ -120,10 +120,38 @@ ion-searchbar {
 }
 // Para el botón de cancelar
 .action-sheet-cancel.sc-ion-action-sheet-ios::after {
-  background: #495057 !important;
+  background: var(--ion-background-input) !important;
 }
 
 .action-sheet-options {
-  --background: #495057;
-  --button-color: #5398ea;
+  --background: var(--ion-background-input);
+}
+
+.action-sheet-button {
+  color: var(--ion-text-color) !important;
+}
+
+.action-sheet-cancel {
+  color: var(--ion-color-primary) !important;
+}
+
+.alert-wrapper {
+  background: var(--ion-background-input) !important;
+}
+
+.alert-button {
+  color: var(--ion-color-success) !important;
+}
+
+.alert-button-role-cancel {
+  color: var(--ion-color-primary) !important;
+}
+
+.alert-tappable.sc-ion-alert-ios {
+  background: var(--ion-background-input) !important;
+}
+
+.alert-button-inner:focus-visible,
+.alert-radio-label:focus-visible {
+  all: unset;
 }

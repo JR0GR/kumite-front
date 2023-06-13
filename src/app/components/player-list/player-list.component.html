@@ -2,7 +2,7 @@
   <ng-container *ngFor="let user of users">
     <ion-item lines="none" (click)="goToProfile(user)">
       <ion-avatar>
-        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        <img [src]="user.base64" />
       </ion-avatar>
       <ion-label>{{ user.nickname }}</ion-label>
       <span [class]="'fi fi-' + user.nationality.toLowerCase()"></span>

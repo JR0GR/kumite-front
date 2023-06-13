@@ -1,22 +1,5 @@
-ion-title {
-  font-family: Logo !important;
-  font-size: 52px;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--ion-color-primary);
-  margin-top: 104px;
-}
-
-.header-md::after {
-  display: none;
-}
-
-ion-header {
-  width: 100vw;
-  margin-bottom: 30px;
-}
-
 ion-grid {
-  margin-top: -150px;
+  margin-top: 60px;
 }
 
 ion-row {
@@ -25,10 +8,6 @@ ion-row {
 
 ion-button {
   max-width: 321px;
-}
-
-ion-header {
-  max-width: 421px;
 }
 
 ion-content {

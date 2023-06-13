@@ -14,7 +14,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class InputComponent<T> extends AbstractFormComponent<string> implements OnInit {
+export class InputComponent extends AbstractFormComponent<string> implements OnInit {
   static _id: number = 0;
 
   @Input() id = `${InputComponent.name}-${++InputComponent._id}`;

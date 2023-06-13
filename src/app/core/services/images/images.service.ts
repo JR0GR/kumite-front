@@ -66,9 +66,13 @@ export class ImagesService {
     const title = new Date().getTime() + '.png';
     const data = { base64: base64File.replace('data:image/png;base64,', ''), title };
 
+    return data
+  }
+
+  async uploadImage(data) {
     const image = await this.upload(data);
     console.log(image)
-    return { title: image, base64File: base64File };
+    return { title: image, base64File: 'data:image/png;base64,' + data.base64File };
   }
 
   async getCacheImagen(data): Promise<string> {

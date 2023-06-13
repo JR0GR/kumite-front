@@ -9,4 +9,5 @@ export interface User {
     tournaments: number[];
     favourites: number[];
     wins: number;
+    base64?: string;
 }

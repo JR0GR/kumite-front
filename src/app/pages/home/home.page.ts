@@ -48,7 +48,11 @@ export class HomePage implements OnInit {
 
   async getTournaments() {
     this.tournamentsService.get().subscribe(res => {
-      res.forEach(tournament => this.me.tournaments.includes(tournament.id) ? this.userTournaments.push(tournament) : this.tournaments.push(tournament));
+      res.forEach(tournament => {
+        if (!tournament.finished) {
+          this.me.tournaments.includes(tournament.id) ? this.userTournaments.push(tournament) : this.tournaments.push(tournament)
+        }
+      });
       console.log(this.userTournaments)
       this.userTournaments.forEach(async (elem) => {
         elem.base64 = await this.imagesService.getCacheImagen(elem.imageId);

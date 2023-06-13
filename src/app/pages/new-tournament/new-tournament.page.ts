@@ -19,6 +19,7 @@ export class NewTournamentPage implements OnInit {
   me: User;
   tournament: FormGroup;
   games: Game[] = [];
+  photos = [];
 
   constructor(
     private fb: FormBuilder,
@@ -52,7 +53,12 @@ export class NewTournamentPage implements OnInit {
     })
   }
 
-  createTournament() {
+  async createTournament() {
+    try {
+      this.tournament.controls['image'].setValue(await (await this.imagesService.uploadImage(this.photos[0])).title);
+    } catch (e) {
+
+    }
     if (!this.tournament.valid) {
       this.toastService.presentToast('All fields are required', false);
       return;
@@ -64,6 +70,7 @@ export class NewTournamentPage implements OnInit {
       creatorId: this.me.id,
       imageId: this.tournament.controls['image'].value,
     })
+
     this.tournamentsService.post({
       name: this.tournament.controls['tournamentName'].value,
       platforms: ["PC", "XBOX", "PS5", "Switch"],
@@ -115,24 +122,20 @@ export class NewTournamentPage implements OnInit {
   }
 
   async addPhotoToGallery(camera: boolean) {
-    let photos = [];
+    this.photos = [];
     if (camera === true) {
       const imagen = await this.imagesService.pickFromCamera();
-      photos.push(imagen);
+      this.photos.push(imagen);
     } else {
       const imagenes = await this.imagesService.pickFromGallery(
       );
       if (imagenes !== null) {
-        photos = [...imagenes];
+        this.photos = [...imagenes];
       }
     }
 
-    if (photos.length === 0) {
+    if (this.photos.length === 0) {
       this.toastService.presentToast('You can upload a maximum of 1 image. Try again.', false);
-    }
-    else {
-      this.tournament.controls['image'].setValue(photos[0].title);
-
     }
 
   }

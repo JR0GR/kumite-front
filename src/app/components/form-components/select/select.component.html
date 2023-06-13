@@ -1,0 +1,17 @@
+<ion-label *ngIf="label" class="custom-label input-label">{{
+  label
+}}</ion-label>
+<ion-item lines="none">
+  <ion-select
+    [placeholder]="placeholder"
+    mode="ios"
+    (ngModelChange)="onSelectChange($event)"
+    [(ngModel)]="valor"
+  >
+    <ion-select-option
+      *ngFor="let option of selectOptions"
+      [value]="option.value"
+      >{{ option.name }}</ion-select-option
+    >
+  </ion-select>
+</ion-item>

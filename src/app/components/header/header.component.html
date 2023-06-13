@@ -1,4 +1,10 @@
-<ion-header>
+<ion-header *ngIf="loginPage" class="login-header">
+  <ion-toolbar>
+    <ion-title class="ion-text-center login-title">KUMITE.GG</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="!loginPage">
   <ion-toolbar>
     <ion-buttons slot="start" *ngIf="backButton">
       <ion-back-button defaultHref="/home"></ion-back-button>
@@ -6,8 +12,8 @@
     <ion-title [class]="backButton ? 'if-back-button' : ''"
       >KUMITE.GG</ion-title
     >
-    <ion-avatar slot="end">
-      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <ion-avatar slot="end" (click)="goToProfile()">
+      <img [src]="me?.base64" />
     </ion-avatar>
   </ion-toolbar>
 </ion-header>

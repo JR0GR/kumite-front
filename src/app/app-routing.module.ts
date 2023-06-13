@@ -29,7 +29,12 @@ const routes: Routes = [
   },
   {
     path: 'tournament-detail',
-    loadChildren: () => import('./pages/tournament-detail/tournament-detail.module').then( m => m.TournamentDetailPageModule)
+    loadChildren: () => import('./pages/tournament-detail/tournament-detail.module').then(m => m.TournamentDetailPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   }
 ];
 @NgModule({

@@ -1,0 +1,110 @@
+<app-header [loginPage]="true"></app-header>
+
+<ion-content>
+  <ion-grid>
+    <form id="registerForm" [formGroup]="register" (ngSubmit)="registerUser()">
+      <ion-row>
+        <ion-col>
+          <app-input
+            label="Name"
+            type="text"
+            formControlName="name"
+            [clearInput]="true"
+          ></app-input>
+        </ion-col>
+        <ion-col>
+          <app-input
+            label="Nickname"
+            type="text"
+            formControlName="nickname"
+            [clearInput]="true"
+          ></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input
+            label="Email"
+            type="email"
+            formControlName="email"
+            [clearInput]="true"
+          ></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-end">
+        <ion-col>
+          <app-input
+            label="Password"
+            type="password"
+            formControlName="password"
+            [clearInput]="true"
+          ></app-input>
+        </ion-col>
+        <ion-col>
+          <app-input
+            label="Confirm Password"
+            type="password"
+            formControlName="confirmPassword"
+            [clearInput]="true"
+          ></app-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-align-items-end">
+        <ion-col>
+          <app-select
+            placeholder="Country"
+            formControlName="nationality"
+            [selectOptions]="countries"
+            label="Country"
+          ></app-select>
+        </ion-col>
+        <ion-col>
+          <app-input
+            label="Phone Number"
+            type="number"
+            formControlName="phone"
+            [clearInput]="true"
+          ></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col
+          ><ion-button
+            class="upload"
+            (click)="showOptionsCamera()"
+            expand="block"
+          >
+            <div>
+              <ion-icon
+                *ngIf="photos.length === 0"
+                src="../../../assets/icon/upload.svg"
+              ></ion-icon
+              ><br />{{photos.length > 0 ? 'Image uploaded' : 'Upload an Image'
+              }}
+            </div>
+          </ion-button></ion-col
+        >
+      </ion-row>
+      <ion-row class="ion-justify-content-center submit-row">
+        <ion-col size="8" size-md="5">
+          <ion-button
+            form="registerForm"
+            type="submit"
+            shape="round"
+            expand="block"
+            >Register</ion-button
+          ></ion-col
+        >
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-text-center">
+        <ion-col size="10">
+          <span
+            >You already have an account?
+            <a (click)="goToLogin()">log in</a></span
+          >
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
