@@ -1,4 +1,4 @@
-<ion-tabs #tabs (ionTabsDidChange)="getSelectedTab()">
+<ion-tabs #tabs (ionTabsDidChange)="tabChange(tabs)">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
       <ng-container *ngIf="selectedTab === 'home'; else elseTemplateHome">

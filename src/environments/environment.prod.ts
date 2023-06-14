@@ -3,7 +3,7 @@ export const environment = {
 
   tokenKey: 'auth-token',
   userKey: 'auth-user',
-  urlApi: 'http://localhost:8080',
+  urlApi: 'https://kumite-gg-production.up.railway.app',
 
   tokenEndpoint: "/token",
   userEndpoint: "/users/",

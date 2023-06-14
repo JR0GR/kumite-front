@@ -106,6 +106,7 @@ export class ImagesService {
       directory: Directory.Cache,
       path: _path,
       data: data.base64File,
+      recursive: true
     });
   }
 
