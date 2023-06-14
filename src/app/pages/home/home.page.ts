@@ -32,7 +32,6 @@ export class HomePage implements OnInit {
     this.tournaments = [];
     this.userTournaments = [];
     await this.usersService.getMe().then((res) => {
-      console.log(res)
       this.me = res;
     })
     await this.getFavorites();
@@ -55,7 +54,6 @@ export class HomePage implements OnInit {
           this.me.tournaments.includes(tournament.id) ? this.userTournaments.push(tournament) : this.tournaments.push(tournament)
         }
       });
-      console.log(this.userTournaments)
       this.userTournaments.forEach(async (elem) => {
         elem.base64 = await this.imagesService.getCacheImagen(elem.imageId);
       })

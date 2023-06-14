@@ -59,18 +59,10 @@ export class NewTournamentPage implements OnInit {
     } catch (e) {
 
     }
-    console.log(this.tournament.value)
     if (!this.tournament.valid) {
       this.toastService.presentToast('All fields are required', false);
       return;
     }
-    console.log({
-      name: this.tournament.controls['tournamentName'].value,
-      platforms: ["PC", "XBOX", "PS5", "Switch"],
-      gameId: this.tournament.controls['game'].value,
-      creatorId: this.me.id,
-      imageId: this.tournament.controls['image'].value,
-    })
 
     this.tournamentsService.post({
       name: this.tournament.controls['tournamentName'].value,
@@ -84,12 +76,7 @@ export class NewTournamentPage implements OnInit {
     }))
   }
 
-  image() {
-    console.log('test');
-  }
-
   gameSelected(value: number) {
-    console.log(value)
     this.tournament.controls['game'].setValue(value);
   }
 

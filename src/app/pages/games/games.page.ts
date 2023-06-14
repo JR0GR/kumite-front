@@ -29,7 +29,6 @@ export class GamesPage implements OnInit {
     })
     this.gamesService.get().subscribe(res => {
       this.games = res
-      console.log(this.games)
       this.games.forEach(async game => {
         game.base64 = await this.imagesService.getCacheImagen(game.imageId)
       })

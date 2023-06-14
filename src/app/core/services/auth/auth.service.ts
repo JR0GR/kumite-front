@@ -67,7 +67,6 @@ export class AuthService {
   async saveProfile(id, notRedirect?: true) {
     this.storageService.removeItem('profile')
     this.http.get<Profile>(`${environment.urlApi}${environment.profileEndpoint}${id}`).subscribe(profile => {
-      console.log(profile)
       this.storageService.setObject('profile', profile);
       if (notRedirect !== true) {
         this.router.navigateByUrl('', { replaceUrl: true });

@@ -41,10 +41,8 @@ export class GameDetailPage implements OnInit {
     this.activeTournaments = [];
     this.game.tournaments.forEach(id => {
       this.tournamentsService.getById(id).subscribe(async res => {
-        console.log(res)
         res.base64 = await this.imagesService.getCacheImagen(res.imageId)
         res.finished ? this.tournaments.push(res) : this.activeTournaments.push(res);
-        console.log(this.tournaments)
       })
     })
   }
@@ -56,13 +54,11 @@ export class GameDetailPage implements OnInit {
   addOrDeleteFavorite() {
     if (this.me?.favourites.includes(this.game.id)) {
       this.favoritesService.delete({ gameId: this.game.id, userId: this.me.id }).then(res => res.subscribe(res => {
-        console.log(res)
         this.usersService.saveMe(true);
         this.me.favourites.splice(this.me.favourites.indexOf(this.game.id), 1)
       }))
     } else {
       this.favoritesService.post({ gameId: this.game.id, userId: this.me.id }).then(res => res.subscribe(res => {
-        console.log(res)
         this.usersService.saveMe(true);
         this.me.favourites.push(this.game.id)
       }))

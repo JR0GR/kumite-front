@@ -39,7 +39,6 @@ export class ImagesService {
     }
 
     for (const capturedPhoto of photos) {
-      console.log(capturedPhoto);
       const image = await this.addNewToGallery(capturedPhoto);
       images.push(image);
     }
@@ -62,7 +61,6 @@ export class ImagesService {
     const raw = await fetch(base64File);
     const blob = await raw.blob();
 
-    console.log(blob);
 
     const title = new Date().getTime() + '.png';
     const data = { base64: base64File.split(',')[1], title };
@@ -71,9 +69,7 @@ export class ImagesService {
   }
 
   async uploadImage(data) {
-    console.log(data)
     const image = await this.upload(data);
-    console.log(image)
     return { title: image, base64File: 'data:image/png;base64,' + data.base64File };
   }
 
@@ -87,9 +83,7 @@ export class ImagesService {
       path: _path
     }).then((readFile) => {
       base64File = readFile.data;
-      console.log('image in cache')
     }).catch(async (e) => {
-      console.log('image not in cache')
       const image = await this.getImage(data);
       await this.saveImageToCache({ title: data, base64File: image });
       base64File = image;
@@ -101,7 +95,6 @@ export class ImagesService {
   async saveImageToCache(data) {
     // eslint-disable-next-line no-underscore-dangle
     const _path = `${CACHE_FOLDER}/${data?.title}`;
-    console.log(_path)
     Filesystem.writeFile({
       directory: Directory.Cache,
       path: _path,
@@ -115,7 +108,6 @@ export class ImagesService {
     const httpOptions = {
       responseType: 'text' as 'text'
     };
-    console.log(data);
     return this.http.post(`${environment.urlApi}/images/add`, data, httpOptions).toPromise();;
   }
 
