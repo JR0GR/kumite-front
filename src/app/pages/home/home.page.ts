@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpinnerVisibilityService } from 'ng-http-loader';
 import { Game } from 'src/app/core/models/apiModels/game.model';
 import { Tournament } from 'src/app/core/models/apiModels/tournament.model';
 import { User } from 'src/app/core/models/apiModels/user.model';
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
     private usersService: UsersService,
     private gamesService: GamesService,
     private tournamentsService: TournamentsService,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
+    private spinner: SpinnerVisibilityService
   ) { }
 
   async ionViewWillEnter() {
