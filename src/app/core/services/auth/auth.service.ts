@@ -64,12 +64,18 @@ export class AuthService {
     return token;
   }
 
-  async saveProfile(id) {
+  async saveProfile(id, notRedirect?: true) {
     this.storageService.removeItem('profile')
     this.http.get<Profile>(`${environment.urlApi}${environment.profileEndpoint}${id}`).subscribe(profile => {
       console.log(profile)
       this.storageService.setObject('profile', profile);
-      this.router.navigateByUrl('', { replaceUrl: true });
+      if (notRedirect !== true) {
+        this.router.navigateByUrl('', { replaceUrl: true });
+      }
     })
+  }
+
+  async myPrfoile() {
+    return await this.storageService.getObject('profile');
   }
 }

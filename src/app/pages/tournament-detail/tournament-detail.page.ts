@@ -19,6 +19,10 @@ export class TournamentDetailPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    if (!this.tournament) {
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+      return;
+    }
     this.usersService.get().subscribe(res => {
       res.forEach(async user => {
         if (this.tournament.participants.includes(user.id)) {

@@ -42,7 +42,22 @@ export abstract class AbstractService<T> {
         return this.http.put<T>(`${this.url}${id}/`, body);
     }
 
-    delete(id: number): Observable<T> {
+    async delete(body: T): Promise<Observable<T>> {
+        let auth_token = await this.authService.getToken()
+
+        const httpOptions = {
+            headers: new HttpHeaders(
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_token}`
+                }
+            ),
+            body: body
+        };
+        return this.http.delete<T>(`${this.url}delete/`, httpOptions);
+    }
+
+    deleteById(id: number): Observable<T> {
         return this.http.delete<T>(`${this.url}${id}/`);
     }
 }

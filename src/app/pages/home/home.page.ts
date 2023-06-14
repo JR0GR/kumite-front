@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
     this.tournaments = [];
     this.userTournaments = [];
     await this.usersService.getMe().then((res) => {
+      console.log(res)
       this.me = res;
     })
     await this.getFavorites();

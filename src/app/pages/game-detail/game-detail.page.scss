@@ -49,3 +49,16 @@ ion-col {
 ion-grid > ion-row {
   margin-bottom: 30px;
 }
+
+.relative {
+  position: relative;
+}
+
+.favorite-icon {
+  color: var(--ion-color-primary);
+  background: var(--ion-background-input);
+  font-size: 30px;
+  position: absolute;
+  left: 20px;
+  padding: 5px;
+}

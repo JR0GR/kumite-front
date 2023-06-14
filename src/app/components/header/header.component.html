@@ -7,13 +7,16 @@
 <ion-header *ngIf="!loginPage">
   <ion-toolbar>
     <ion-buttons slot="start" *ngIf="backButton">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
-    <ion-title [class]="backButton ? 'if-back-button' : ''"
-      >KUMITE.GG</ion-title
+    <ion-title
+      >KUMITE.GG
+      <span *ngIf="profile?.admin; else moderator">ADMIN</span></ion-title
     >
     <ion-avatar slot="end" (click)="goToProfile()">
       <img [src]="me?.base64" />
     </ion-avatar>
   </ion-toolbar>
 </ion-header>
+
+<ng-template #moderator><span>MOD</span></ng-template>

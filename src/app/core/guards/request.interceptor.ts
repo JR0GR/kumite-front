@@ -29,6 +29,8 @@ export class RequestInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
 
+        if (request.url.includes('create') || request.url.includes('delete')) return next.handle(request)
+
 
         return from(this.authService.getToken()).pipe(switchMap(token => {
             if (token === null || request.url.includes(environment.tokenEndpoint) || request.url.includes(environment.imagesEndpoint) || request.url.includes('create')) return next.handle(request)

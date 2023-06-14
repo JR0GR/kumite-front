@@ -27,7 +27,9 @@ export class ProfilePage implements OnInit {
     this.user = this.router.getCurrentNavigation()?.extras?.state?.user;
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.favorites = []
+    this.tournaments = []
     if (!this.user) {
       this.router.navigateByUrl('/home', { replaceUrl: true });
       return;
@@ -45,6 +47,10 @@ export class ProfilePage implements OnInit {
         this.tournaments.push(res)
       });
     })
+  }
+
+  ngOnInit() {
+
   }
 
 }

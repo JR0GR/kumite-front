@@ -3,16 +3,18 @@ ion-title {
   font-size: 36px;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: var(--ion-color-primary);
-  margin-left: 60px;
+  padding: 0;
+  margin-left: 20px;
   margin-top: 20px;
-}
 
-.if-back-button {
-  margin-left: 10px;
+  span {
+    -webkit-text-stroke-width: 1px;
+    font-size: 24px;
+  }
 }
 
 ion-avatar {
-  margin-right: 25px;
+  margin-right: 20px;
   max-width: 36px;
   max-height: 36px;
   margin-top: 20px;
