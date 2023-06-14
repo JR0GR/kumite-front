@@ -93,5 +93,12 @@
         ></app-game-tournament-list
       ></ion-col>
     </ion-row>
+    <ion-row class="ion-justify-content-center" *ngIf="me?.id === user?.id">
+      <ion-col size="9">
+        <ion-button shape="round" expand="block" (click)="logout()"
+          >Log Out</ion-button
+        >
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

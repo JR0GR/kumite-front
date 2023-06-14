@@ -6,6 +6,7 @@ import { User } from 'src/app/core/models/apiModels/user.model';
 import { GamesService } from 'src/app/core/services/api/games/games.service';
 import { TournamentsService } from 'src/app/core/services/api/tournaments/tournaments.service';
 import { UsersService } from 'src/app/core/services/api/users/users.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ImagesService } from 'src/app/core/services/images/images.service';
 
 @Component({
@@ -26,7 +27,8 @@ export class ProfilePage implements OnInit {
     private gamesService: GamesService,
     private tournamentsService: TournamentsService,
     private imagesService: ImagesService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {
     this.user = this.router.getCurrentNavigation()?.extras?.state?.user;
   }
@@ -58,6 +60,10 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  logout() {
+    this.authService.signOut()
   }
 
 }
