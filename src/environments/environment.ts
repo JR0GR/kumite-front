@@ -15,7 +15,8 @@ export const environment = {
   tournamentEndpoint: "/tournaments/",
   imagesEndpoint: "/images/",
   profileEndpoint: "/profile/",
-  favoriteEndpoint: "/favourite/"
+  favoriteEndpoint: "/favourite/",
+  userTournamentEndpoint: "/userTournament/"
 
 };
 
