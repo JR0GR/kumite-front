@@ -5,6 +5,7 @@ import { Tournament } from 'src/app/core/models/apiModels/tournament.model';
 import { User } from 'src/app/core/models/apiModels/user.model';
 import { GamesService } from 'src/app/core/services/api/games/games.service';
 import { TournamentsService } from 'src/app/core/services/api/tournaments/tournaments.service';
+import { UsersService } from 'src/app/core/services/api/users/users.service';
 import { ImagesService } from 'src/app/core/services/images/images.service';
 
 @Component({
@@ -18,22 +19,28 @@ export class ProfilePage implements OnInit {
   tournaments: Tournament[] = [];
   regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 
+  me: User;
+
   constructor(
     private router: Router,
     private gamesService: GamesService,
     private tournamentsService: TournamentsService,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
+    private usersService: UsersService
   ) {
     this.user = this.router.getCurrentNavigation()?.extras?.state?.user;
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.favorites = []
     this.tournaments = []
     if (!this.user) {
       this.router.navigateByUrl('/home', { replaceUrl: true });
       return;
     }
+    await this.usersService.getMe().then((res) => {
+      this.me = res
+    })
     console.log(this.user);
     this.user.favourites.forEach((id) => {
       this.gamesService.getById(id).subscribe(async res => {

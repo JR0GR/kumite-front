@@ -14,6 +14,7 @@ export class RankingPage implements OnInit {
   winsFilter = false;
   tournamentsFilter = false;
   sort = null;
+  me: User;
 
   constructor(
     private usersService: UsersService,
@@ -23,7 +24,10 @@ export class RankingPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    await this.usersService.getMe().then((res) => {
+      this.me = res;
+    })
     this.usersService.get().subscribe(res => {
       res.forEach(async res => {
         res.base64 = await this.imagesService.getCacheImagen(res.pictureId);

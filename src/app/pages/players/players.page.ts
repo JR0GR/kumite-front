@@ -11,6 +11,7 @@ import { ImagesService } from 'src/app/core/services/images/images.service';
 export class PlayersPage implements OnInit {
   users: User[];
   filteredUsers: User[];
+  me: User;
 
   constructor(
     private usersService: UsersService,
@@ -21,7 +22,10 @@ export class PlayersPage implements OnInit {
 
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    await this.usersService.getMe().then((res) => {
+      this.me = res;
+    })
     this.usersService.get().subscribe(res => {
       res.forEach(async res => {
         res.base64 = await this.imagesService.getCacheImagen(res.pictureId);

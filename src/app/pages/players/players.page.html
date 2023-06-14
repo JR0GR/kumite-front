@@ -1,4 +1,4 @@
-<app-header [loginPage]="false"> </app-header>
+<app-header [loginPage]="false" [me]="me"> </app-header>
 <ion-content>
   <app-searchbar (searchValue)="filterUsers($event)"></app-searchbar>
   <app-player-list [users]="filteredUsers"></app-player-list>

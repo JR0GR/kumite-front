@@ -19,4 +19,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ng-template #moderator><span>MOD</span></ng-template>
+<ng-template #moderator
+  ><span *ngIf="profile?.moderator">MOD</span></ng-template
+>

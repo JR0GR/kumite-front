@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Game } from 'src/app/core/models/apiModels/game.model';
+import { User } from 'src/app/core/models/apiModels/user.model';
 import { GamesService } from 'src/app/core/services/api/games/games.service';
+import { UsersService } from 'src/app/core/services/api/users/users.service';
 import { ImagesService } from 'src/app/core/services/images/images.service';
 
 @Component({
@@ -12,14 +14,19 @@ import { ImagesService } from 'src/app/core/services/images/images.service';
 export class GamesPage implements OnInit {
   games: Game[] = [];
   filteredGames: Game[] = [];
+  me: User
 
   constructor(
     private gamesService: GamesService,
     private router: Router,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
+    private usersService: UsersService
   ) { }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    await this.usersService.getMe().then((res) => {
+      this.me = res;
+    })
     this.gamesService.get().subscribe(res => {
       this.games = res
       console.log(this.games)

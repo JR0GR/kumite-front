@@ -13,16 +13,20 @@ import { ImagesService } from 'src/app/core/services/images/images.service';
 export class TournamentDetailPage implements OnInit {
   users: User[] = [];
   tournament: Tournament;
+  me: User;
 
   constructor(private usersService: UsersService, private router: Router, private imagesService: ImagesService) {
     this.tournament = this.router.getCurrentNavigation()?.extras?.state?.tournament;
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     if (!this.tournament) {
       this.router.navigateByUrl('/home', { replaceUrl: true });
       return;
     }
+    await this.usersService.getMe().then((res) => {
+      this.me = res;
+    })
     this.usersService.get().subscribe(res => {
       res.forEach(async user => {
         if (this.tournament.participants.includes(user.id)) {
