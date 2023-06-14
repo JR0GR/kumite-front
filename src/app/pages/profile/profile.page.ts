@@ -51,8 +51,10 @@ export class ProfilePage implements OnInit {
     })
     this.user.tournaments.forEach((id) => {
       this.tournamentsService.getById(id).subscribe(async res => {
-        res.base64 = await this.imagesService.getCacheImagen(res.imageId)
-        this.tournaments.push(res)
+        if (!res.finished) {
+          res.base64 = await this.imagesService.getCacheImagen(res.imageId)
+          this.tournaments.push(res)
+        }
       });
     })
   }
