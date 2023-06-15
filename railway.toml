@@ -2,7 +2,7 @@
 builder = "dockerfile"
 
 [deploy]
-startCommand = "railway run docker run -d -p 80:80 --name kumite kumite"
+startCommand = "docker run -d -p 80:80 --name kumite kumite"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
