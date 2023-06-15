@@ -50,7 +50,7 @@ export class AuthService {
     this.user = null;
     this.token = null;
     this.storageService.clear();
-    window.location.reload();
+    this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
   saveToken(token: string): void {
