@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log('test')
   }
 
   ngOnChanges(changes: SimpleChanges) {

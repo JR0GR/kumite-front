@@ -29,7 +29,6 @@ export class UsersService extends AbstractService<User> {
     this.storageService.removeItem('user')
     this.http.get<User>(this.url + 'me/').subscribe(async (user) => {
       user.base64 = await this.imagesService.getCacheImagen(user.pictureId)
-      console.log(user)
       this.storageService.setObject('user', user);
       if (notRedirect === true) {
         await this.authService.saveProfile(user.profileId, notRedirect)

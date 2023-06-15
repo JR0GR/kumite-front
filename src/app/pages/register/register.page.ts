@@ -42,7 +42,6 @@ export class RegisterPage implements OnInit {
   }
 
   async registerUser() {
-    console.log(this.photos[0])
     try {
       this.register.controls['pictureId'].setValue(await (await this.imagesService.uploadImage(this.photos[0])).title);
     } catch (e) { }

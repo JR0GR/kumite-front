@@ -99,7 +99,6 @@ export class TournamentDetailPage implements OnInit {
     alert.onDidDismiss().then((event) => {
       if (event.role === 'confirm' && event.data.values) {
         this.tournamentsService.finish({ tournamentId: this.tournament.id, userId: event.data.values }).then(res => res.subscribe(res => {
-          console.log(res)
           this.usersService.saveMe(true);
           this.me.wins = this.me.wins + 1
           this.tournament.finished = true
@@ -108,7 +107,6 @@ export class TournamentDetailPage implements OnInit {
               user.wins = user.wins + 1
             }
           })
-          console.log(this.users)
         }))
       }
 

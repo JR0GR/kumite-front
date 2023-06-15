@@ -43,7 +43,6 @@ export class ProfilePage implements OnInit {
     await this.usersService.getMe().then((res) => {
       this.me = res
     })
-    console.log(this.user);
     this.user.favourites.forEach((id) => {
       this.gamesService.getById(id).subscribe(async res => {
         res.base64 = await this.imagesService.getCacheImagen(res.imageId)
@@ -52,8 +51,10 @@ export class ProfilePage implements OnInit {
     })
     this.user.tournaments.forEach((id) => {
       this.tournamentsService.getById(id).subscribe(async res => {
-        res.base64 = await this.imagesService.getCacheImagen(res.imageId)
-        this.tournaments.push(res)
+        if (!res.finished) {
+          res.base64 = await this.imagesService.getCacheImagen(res.imageId)
+          this.tournaments.push(res)
+        }
       });
     })
   }

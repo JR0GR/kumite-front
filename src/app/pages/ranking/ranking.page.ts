@@ -47,7 +47,6 @@ export class RankingPage implements OnInit {
     else if (this.sort) {
       this.sorteredUsers = tmp.sort((a, b) => b.tournaments.length - a.tournaments.length);
     }
-    console.log(this.sorteredUsers)
   }
 
   changeActiveSort(state: boolean) {

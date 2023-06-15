@@ -28,11 +28,7 @@ export class HomePage implements OnInit {
   ) { }
 
   async ionViewWillEnter() {
-    this.favorites = [];
-    this.tournaments = [];
-    this.userTournaments = [];
     await this.usersService.getMe().then((res) => {
-      console.log(res)
       this.me = res;
     })
     await this.getFavorites();
@@ -40,28 +36,33 @@ export class HomePage implements OnInit {
   }
 
   async getFavorites() {
+    let favorites = []
     this.me.favourites.forEach((id) => {
       this.gamesService.getById(id).subscribe(async res => {
         res.base64 = await this.imagesService.getCacheImagen(res.imageId)
-        this.favorites.push(res);
+        favorites.push(res);
       });
     })
+    this.favorites = favorites
   }
 
   async getTournaments() {
+    let tournaments = [];
+    let userTournaments = []
     this.tournamentsService.get().subscribe(res => {
       res.forEach(tournament => {
         if (!tournament.finished) {
-          this.me.tournaments.includes(tournament.id) ? this.userTournaments.push(tournament) : this.tournaments.push(tournament)
+          this.me.tournaments.includes(tournament.id) ? userTournaments.push(tournament) : tournaments.push(tournament)
         }
       });
-      console.log(this.userTournaments)
-      this.userTournaments.forEach(async (elem) => {
+      userTournaments.forEach(async (elem) => {
         elem.base64 = await this.imagesService.getCacheImagen(elem.imageId);
       })
-      this.tournaments.forEach(async (elem) => {
+      tournaments.forEach(async (elem) => {
         elem.base64 = await this.imagesService.getCacheImagen(elem.imageId)
       })
+      this.tournaments = tournaments
+      this.userTournaments = userTournaments
     })
   }
 
