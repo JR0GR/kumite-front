@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const isAuth = await Preferences.get({ key: environment.tokenKey });
         if (!isAuth?.value) {
-            this.router.navigateByUrl('/login')
+            this.router.navigateByUrl('/login', { replaceUrl: true })
             return false;
         }
         return true;
