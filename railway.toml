@@ -1,0 +1,10 @@
+[build]
+builder = "dockerfile"
+buildCommand = "docker build -t kumite ./docker/"
+
+[deploy]
+startCommand = "docker run -d -p 80:80 --name kumite kumite"
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
