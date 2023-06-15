@@ -1,6 +1,5 @@
 [build]
 builder = "dockerfile"
-buildCommand = "railway run docker build -t kumite ./docker/"
 
 [deploy]
 startCommand = "railway run docker run -d -p 80:80 --name kumite kumite"
